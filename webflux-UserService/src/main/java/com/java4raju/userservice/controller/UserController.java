@@ -1,6 +1,7 @@
 package com.java4raju.userservice.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -52,5 +53,11 @@ public class UserController {
     public Mono<Void> deleteUser(@PathVariable int id){
         return this.service.deleteUser(id);
     }
+    
+    @GetMapping(value = "all/stream", produces = MediaType.TEXT_EVENT_STREAM_VALUE )
+    public Flux<UserDto> findAllStream() {
+        return this.service.allStream();
+    }
+
 
 }

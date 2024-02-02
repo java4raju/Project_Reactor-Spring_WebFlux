@@ -1,5 +1,7 @@
 package com.java4raju.webfluxinitial.service;
 
+import java.time.Duration;
+
 import org.springframework.stereotype.Service;
 
 import com.java4raju.webfluxinitial.dto.MultiplyRequestDto;
@@ -8,13 +10,12 @@ import com.java4raju.webfluxinitial.dto.Response;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import java.time.Duration;
-
 @Service
 public class ReactiveMathService {
 
     public Mono<Response> findSquare(int input){
         return Mono.fromSupplier(() -> input * input)
+        		 .delayElement(Duration.ofSeconds(1))
                     .map(Response::new);
     }
 
@@ -29,6 +30,7 @@ public class ReactiveMathService {
     public Mono<Response> multiply(Mono<MultiplyRequestDto> dtoMono){
         return dtoMono
                     .map(dto -> dto.getFirst() * dto.getSecond())
+                    .delayElement(Duration.ofSeconds(1))
                     .map(Response::new);
     }
 

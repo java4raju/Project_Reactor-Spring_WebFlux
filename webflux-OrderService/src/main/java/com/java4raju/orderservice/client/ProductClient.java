@@ -20,6 +20,11 @@ public class ProductClient {
                 .build();
     }
 
+    /**
+     * Call Product Service
+     * @param productId
+     * @return Mono<ProductDto>
+     */
     public Mono<ProductDto> getProductById(final String productId){
         return this.webClient
                 .get()

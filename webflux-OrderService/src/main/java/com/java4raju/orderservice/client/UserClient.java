@@ -22,7 +22,12 @@ public class UserClient {
                 .build();
     }
 
-    public Mono<TransactionResponseDto> authorizeTransaction(TransactionRequestDto requestDto){
+    /**
+     * Calls User Service 
+     * @param requestDto
+     * @return Mono<TransactionResponseDto>
+     */
+    public Mono<TransactionResponseDto> initiateTransaction(TransactionRequestDto requestDto){
         return this.webClient
                 .post()
                 .uri("transaction")

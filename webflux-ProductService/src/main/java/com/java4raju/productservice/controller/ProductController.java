@@ -64,9 +64,9 @@ public class ProductController {
     }
 
     private void simulateRandomException(){
-        int nextInt = ThreadLocalRandom.current().nextInt(1, 10);
-        if(nextInt > 5)
-            throw new RuntimeException("something is wrong");
+        int nextInt = ThreadLocalRandom.current().nextInt(1, 20);
+        if(nextInt > 20)
+            throw new RuntimeException("something went wrong! Connect admin.");
     }
 
 }

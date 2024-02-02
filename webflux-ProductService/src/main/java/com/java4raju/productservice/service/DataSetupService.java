@@ -12,6 +12,9 @@ import com.java4raju.productservice.dto.ProductDto;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+/**
+ * Sets up data in Mongo-DB
+ */
 @Service
 public class DataSetupService implements CommandLineRunner {
 
@@ -20,10 +23,10 @@ public class DataSetupService implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        ProductDto p1 = new ProductDto("4k-tv", 1000);
-        ProductDto p2 = new ProductDto("slr-camera", 750);
-        ProductDto p3 = new ProductDto("iphone", 800);
-        ProductDto p4 = new ProductDto("headphone", 100);
+        ProductDto p1 = new ProductDto("JamesWebTelescope", 1200000000);
+        ProductDto p2 = new ProductDto("Curved-TV", 1050);
+        ProductDto p3 = new ProductDto("iphone", 123454);
+        ProductDto p4 = new ProductDto("headphone", 1200);
 
         Flux<ProductDto> pFlux = Flux.just(p1, p2, p3, p4)
         		.concatWith(newProducts())
@@ -34,9 +37,9 @@ public class DataSetupService implements CommandLineRunner {
     }
 
     private Flux<ProductDto> newProducts(){
-        return Flux.range(1, 40)
-                .delayElements(Duration.ofSeconds(1))
-                .map(i -> new ProductDto("product-" + i, ThreadLocalRandom.current().nextInt(10, 100)));
+        return Flux.range(1, 500)
+                .delayElements(Duration.ofMillis(10))
+                .map(i -> new ProductDto("product-" + i, ThreadLocalRandom.current().nextInt(1000, 10000)));
     }
 
 }

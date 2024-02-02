@@ -16,7 +16,7 @@ create table user_transaction(
 insert into users
     (name, balance)
     values
-    ('sam', 1000),
-    ('mike', 1200),
-    ('jake', 800),
-    ('marshal', 2000);
+    ('Raaj', 10000),
+    ('Aaaj', 12000),
+    ('Kaaj', 8000),
+    ('Taaj', 20000);

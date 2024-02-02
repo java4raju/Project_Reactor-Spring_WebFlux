@@ -23,6 +23,11 @@ public class TransactionService {
     @Autowired
     private UserTransactionRepository transactionRepository;
 
+    /**
+     * Check for update if updated then Status set to approved else declined
+     * @param requestDto
+     * @return Mono<TransactionResponseDto>
+     */
     public Mono<TransactionResponseDto> createTransaction(final TransactionRequestDto requestDto){
         return this.userRepository.updateUserBalance(requestDto.getUserId(), requestDto.getAmount())
                         .filter(Boolean::booleanValue)

@@ -1,15 +1,26 @@
 package com.java4raju.orderservice.repository;
 
-import java.util.List;
-
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.reactive.ReactiveCrudRepository;
 import org.springframework.stereotype.Repository;
 
 import com.java4raju.orderservice.entity.PurchaseOrder;
 
-@Repository
+import reactor.core.publisher.Flux;
+
+/**
+ * Blocking API
+ */
+/*@Repository
 public interface PurchaseOrderRepository extends JpaRepository<PurchaseOrder, Integer> {
 
     List<PurchaseOrder> findByUserId(int userId);
 
+}*/
+
+@Repository
+public interface PurchaseOrderRepository extends ReactiveCrudRepository<PurchaseOrder, Integer> {
+
+    Flux<PurchaseOrder> findByUserId(int userId);
+
 }
+

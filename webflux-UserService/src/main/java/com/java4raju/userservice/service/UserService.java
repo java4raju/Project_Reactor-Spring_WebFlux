@@ -1,5 +1,7 @@
 package com.java4raju.userservice.service;
 
+import java.time.Duration;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +20,13 @@ public class UserService {
 
     public Flux<UserDto> all(){
         return this.userRepository.findAll()
+                    .map(EntityDtoUtil::toDto);
+    }
+    
+    public Flux<UserDto> allStream(){
+        return this.userRepository.findAll()
+        			.delayElements(Duration.ofMillis(500))
+        			.log()
                     .map(EntityDtoUtil::toDto);
     }
 

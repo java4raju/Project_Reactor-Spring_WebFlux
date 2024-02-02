@@ -4,7 +4,6 @@ import java.nio.charset.StandardCharsets;
 import java.time.Duration;
 import java.util.concurrent.ThreadLocalRandom;
 
-import org.reactivestreams.Subscriber;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
@@ -40,16 +39,17 @@ public class DataSetupService implements CommandLineRunner {
                 .then()
                 .subscribe();
         
-        Flux.just(new UserDto("Rahul",  ThreadLocalRandom.current().nextInt(100, 10000)))
-        	.concatWith(newUser())
+        Flux.just(new UserDto("Rahul",  ThreadLocalRandom.current().nextInt(5000, 10000)))
+        	.concatWith(newUsers())
         	.flatMap(u -> userService.createUser(Mono.just(u)))
-        	.delayElements(Duration.ofMillis(50))
+        	//.delayElements(Duration.ofMillis(50))
         	.subscribe(System.out::println);
         	
     }
     
-    private Flux<UserDto> newUser(){
-    	return Flux.range(1, 40)
-    	           .map(i -> new UserDto("User-"+i,  ThreadLocalRandom.current().nextInt(1000, 100000) )).delayElements(Duration.ofSeconds(1));
+    private Flux<UserDto> newUsers(){
+    	return Flux.range(1, 500)
+    			 .delayElements(Duration.ofMillis(10))
+    	           .map(i -> new UserDto("User-"+i,  ThreadLocalRandom.current().nextInt(5000, 10000) ));
     }
 }

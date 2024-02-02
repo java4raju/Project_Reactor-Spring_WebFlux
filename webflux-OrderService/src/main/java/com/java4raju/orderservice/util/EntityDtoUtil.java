@@ -9,6 +9,9 @@ import com.java4raju.orderservice.dto.TransactionRequestDto;
 import com.java4raju.orderservice.dto.TransactionStatus;
 import com.java4raju.orderservice.entity.PurchaseOrder;
 
+/**
+ * DTO to entity and entity to DTO converters
+ */
 public class EntityDtoUtil {
 
     public static PurchaseOrderResponseDto getPurchaseOrderResponseDto(PurchaseOrder purchaseOrder){

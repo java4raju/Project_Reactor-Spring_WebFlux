@@ -1,11 +1,12 @@
 package com.java4raju.webfluxinitial.config;
 
+import java.util.function.BiFunction;
+
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.server.ServerRequest;
 import org.springframework.web.reactive.function.server.ServerResponse;
-import reactor.core.publisher.Mono;
 
-import java.util.function.BiFunction;
+import reactor.core.publisher.Mono;
 
 @Service
 public class CalculatorHandler {

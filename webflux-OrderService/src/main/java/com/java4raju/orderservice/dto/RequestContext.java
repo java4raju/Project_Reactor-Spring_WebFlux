@@ -7,8 +7,8 @@ import lombok.ToString;
 @ToString
 public class RequestContext {
 
+	private ProductDto productDto;
     private PurchaseOrderRequestDto purchaseOrderRequestDto;
-    private ProductDto productDto;
     private TransactionRequestDto transactionRequestDto;
     private TransactionResponseDto transactionResponseDto;
 
